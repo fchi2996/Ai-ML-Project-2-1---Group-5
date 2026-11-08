@@ -1,0 +1,52 @@
+Run ID: Experiment_20261105_002428_1
+Configuration: /Users/marianasoeiro/Desktop/UNI/Y2/Project 2-1/Ml project/ml-agents/config/ppo/3DBall.yaml
+Exit code: 0
+Duration: 2 seconds
+------------------------------
+Run ID: Experiment_20261105_003346_1
+Configuration: /Users/marianasoeiro/Desktop/UNI/Y2/Project 2-1/Ml project/ml-agents/config/ppo/3DBall.yaml
+Exit code: 1
+Duration: 2 seconds
+------------------------------
+Run ID: Experiment_20261105_020802_1
+Configuration: /Users/marianasoeiro/Desktop/UNI/Y2/Project 2-1/Ml project/ml-agents/config/ppo/3DBall.yaml
+Environment: /Users/marianasoeiro/Desktop/MLAgentsBuild.app
+Exit code: 1
+Duration: 1 seconds
+------------------------------
+Run ID: Experiment_20261105_112704_1
+Configuration: /Users/marianasoeiro/Desktop/UNI/Y2/Project 2-1/Ml project/ml-agents/config/ppo/3DBall.yaml
+Environment: /Users/marianasoeiro/Desktop/MLAgentsBuild.app
+Exit code: 0
+Duration: 288 seconds
+------------------------------
+Run ID: Experiment_20261105_135036_1
+Configuration: /Users/marianasoeiro/Desktop/UNI/Y2/Project 2-1/Ml project/ml-agents/config/ppo/3DBall.yaml
+Environment: /Users/marianasoeiro/Desktop/MLAgentsBuild.app
+Exit code: 0
+Duration: 494 seconds
+------------------------------
+Run ID: Experiment_20261108_121242_1
+Configuration: /Users/marianasoeiro/Desktop/UNI/Y2/Project 2-1/Ml project/ml-agents/config/ppo/3DBall.yaml
+Environment: /Users/marianasoeiro/Desktop/MLAgentsBuild.app
+Exit code: 0
+Duration: 431 seconds
+------------------------------
+Run ID: Experiment_20261108_135548_1
+Configuration: /Users/marianasoeiro/Desktop/UNI/Y2/Project 2-1/Ml project/ml-agents/Project/Automation/randomizer/output_Experiment_20261108_135548_1.yaml
+Environment: /Users/marianasoeiro/Desktop/MLAgentsBuild.app
+Exit code: 1
+Duration: 2 seconds
+------------------------------
+Run ID: Experiment_20261108_135808_1
+Configuration: /Users/marianasoeiro/Desktop/UNI/Y2/Project 2-1/Ml project/ml-agents/Project/Automation/randomizer/output_Experiment_20261108_135808_1.yaml
+Environment: /Users/marianasoeiro/Desktop/MLAgentsBuild.app
+Exit code: 0
+Duration: 456 seconds
+------------------------------
+Run ID: Experiment_20261108_171848_1
+Configuration: /Users/marianasoeiro/Desktop/UNI/Y2/Project 2-1/Ml project/ml-agents/Project/Automation/randomizer/output_Experiment_20261108_171848_1.yaml
+Environment: /Users/marianasoeiro/Desktop/UNI/Y2/Project 2-1/Ml project/ml-agents/Builds/MLAgentsBuild.app
+Exit code: 0
+Duration: 460 seconds
+------------------------------

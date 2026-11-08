@@ -1,0 +1,42 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1793827912",
+        "python_version": "3.10.12 (main, Jul  5 2023, 15:02:25) [Clang 14.0.6 ]",
+        "command_line_arguments": "/opt/anaconda3/envs/mlagents-conda/bin/mlagents-learn /Users/marianasoeiro/Desktop/UNI/Y2/Project 2-1/Ml project/ml-agents/config/ppo/3DBall.yaml --run-id=Test_01",
+        "mlagents_version": "1.0.0",
+        "mlagents_envs_version": "1.0.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "2.14.0",
+        "numpy_version": "1.23.5",
+        "end_time_seconds": "1793827973"
+    },
+    "total": 61.01523775001988,
+    "count": 1,
+    "self": 0.01634487500996329,
+    "children": {
+        "run_training.setup": {
+            "total": 0.017337291996227577,
+            "count": 1,
+            "self": 0.017337291996227577
+        },
+        "TrainerController.start_learning": {
+            "total": 60.98155558301369,
+            "count": 1,
+            "self": 0.00040800002170726657,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 60.980885916011175,
+                    "count": 1,
+                    "self": 60.980885916011175
+                },
+                "TrainerController._save_models": {
+                    "total": 0.0002616669808048755,
+                    "count": 1,
+                    "self": 0.0002616669808048755
+                }
+            }
+        }
+    }
+}
