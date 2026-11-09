@@ -1,0 +1,16 @@
+# Ignore everything by default
+*
+
+# Allow only what the Dockerfile COPYs
+!requirements.txt
+!ml-agents/csv-plugin
+!ml-agents/config
+!ml-agents/Project/Automation/src/MLAgentLauncher.java
+!ml-agents/Project/Automation/randomizer/*.py
+!app_Builds/3dballLinux
+
+
+# Junk inside allowed folders
+**/__pycache__
+**/*.pyc
+**/.DS_Store
