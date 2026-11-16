@@ -50,3 +50,9 @@ Environment: /Users/marianasoeiro/Desktop/UNI/Y2/Project 2-1/Ml project/ml-agent
 Exit code: 0
 Duration: 460 seconds
 ------------------------------
+Run ID: Experiment_20261116_161551_1
+Configuration: /Users/fchi2996/Documents/University/Project 2-1/Ai-ML-Project-2-1---Group-5/ml-agents/Project/Automation/randomizer/output_Experiment_20261116_161551_1.yaml
+Environment: /Users/fchi2996/Documents/University/Project 2-1/Ai-ML-Project-2-1---Group-5/app_Builds/Mac Build/3dballMac.app
+Exit code: 0
+Duration: 299 seconds
+------------------------------

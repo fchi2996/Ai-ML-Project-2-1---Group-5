@@ -1,8 +1,8 @@
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.BufferedWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class MLAgentLauncher {
     public static void main (String[] args) {
@@ -91,7 +91,10 @@ public class MLAgentLauncher {
                         "mlagents-learn",
                         new File(randomizerScript.getParentFile(), outputConfigPath).getAbsolutePath(),
                         "--run-id=" + runId,
-                        "--env=" + environmentPath // Specify the Unity build path
+                        "--env=" + environmentPath, // Specify the Unity build path
+                        "--no-graphics",
+                        "--timeout-wait=300"
+                    
                     );
                 // Start the process
                 processBuilder.inheritIO();

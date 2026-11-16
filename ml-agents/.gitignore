@@ -95,3 +95,7 @@ coverage.xml
 /htmlcov/
 
 **/UserSettings/*
+
+#local training results
+
+Project/Automation/src/results/

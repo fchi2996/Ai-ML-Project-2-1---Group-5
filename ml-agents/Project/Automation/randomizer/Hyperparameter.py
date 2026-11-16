@@ -55,17 +55,31 @@ class Hyperparameter:
         self.type = parameter_type
         self.values = values
 
-    def get_random(self) -> int | str | float:
         if self.type is int:
             # return random.randint(self.values[0], self.values[1])
-            return random.randrange(self.values[0], self.values[1]+1, self.values[2])
+            self.random_value = random.randrange(self.values[0], self.values[1]+1, self.values[2])
 
         if self.type is float:
             #v[0] + (rand * (v[1]-v[0]))
-            return self.values[0] + (random.random() * (self.values[1] - self.values[0]))
+            self.random_value = self.values[0] + (random.random() * (self.values[1] - self.values[0]))
 
         if self.type is str:
-            return random.choice(self.values)
+            self.random_value = random.choice(self.values)
+        
+
+    def get_random(self) -> int | str | float:
+        # if self.type is int:
+        #     # return random.randint(self.values[0], self.values[1])
+        #     return random.randrange(self.values[0], self.values[1]+1, self.values[2])
+
+        # if self.type is float:
+        #     #v[0] + (rand * (v[1]-v[0]))
+        #     return self.values[0] + (random.random() * (self.values[1] - self.values[0]))
+
+        # if self.type is str:
+        #     return random.choice(self.values)
+
+        return self.random_value
 
     def get_name(self) -> str:
         return self.parameter_name

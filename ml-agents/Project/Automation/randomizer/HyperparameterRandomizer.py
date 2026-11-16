@@ -15,11 +15,15 @@ hyperparameter(parameter_name, parameter_type, values):
         str:   len(values) must be >=1. Random returns a random string from values.
 '''
 hyperparameters = [
-        Hyperparameter.Hyperparameter("buffer_size", int, [10000, 25000, 5000]),
-        Hyperparameter.Hyperparameter("gamma", float, [0, 1]),
-        #Hyperparameter.Hyperparameter("learning_rate_schedule", str, ["Option A", "Option B", "Option C"])
-        Hyperparameter.Hyperparameter("learning_rate_schedule", str, ["linear", "constant"])
+        Hyperparameter.Hyperparameter("learning_rate", float, [0.00001, 0.001]),
+        Hyperparameter.Hyperparameter("batch_size",    int,   [32, 512, 16]),
+        Hyperparameter.Hyperparameter("buffer_size",   int,   [4, 64, 4]),
+        Hyperparameter.Hyperparameter("hidden_units",  int,   [32, 512, 16]),
+        Hyperparameter.Hyperparameter("num_layers",    int,   [1, 3, 1]),
+        Hyperparameter.Hyperparameter("gamma",         float, [0.9, 0.995]),
+        Hyperparameter.Hyperparameter("beta",          float, [0.0001, 0.03])
     ]
+
 
 def recursive(data: dict, hyperparameters: list) -> int:
     checksum = 0
@@ -30,13 +34,27 @@ def recursive(data: dict, hyperparameters: list) -> int:
 
         for index in range(len(hyperparameters)):
             if hyperparameters[index].get_name() == key:
-                data.update({key: hyperparameters[index].get_random()})
+                # buffer_size bodge:
+                if hyperparameters[index].get_name() == "buffer_size":
+                    for index2 in range(len(hyperparameters)):
+                        if hyperparameters[index2].get_name() == "batch_size":
+                            batch_size = hyperparameters[index2].get_random()
+
+                    data.update({key: hyperparameters[index].get_random() * batch_size})
+                    print(hyperparameters[1].get_random())
+
+                else:
+                    data.update({key: hyperparameters[index].get_random()})
+
                 checksum += 1
 
     return checksum
 #end recursive method
 
 #main method
+# input_yaml_filename = "example.yaml"
+# output_yaml_filename = "exampleOutput.yaml"
+
 parser = argparse.ArgumentParser()
 
 parser.add_argument("input", help="the example .yaml file")
@@ -61,4 +79,4 @@ if len(hyperparameters) != checksum:
 with open(output_yaml_filename, "w") as yaml_output_file:
     yaml.dump(yaml_dict, yaml_output_file, default_flow_style=False)
 
-print(".yaml file successfully generated. Randomized " + str(len(hyperparameters)) + " parameters.\nOutput to file \"" + output_yaml_filename + "\"")
+print(".yaml file successfully generated. Randomized " + str(len(hyperparameters)) + " parameters\nOutput to file \"" + output_yaml_filename + "\"")
