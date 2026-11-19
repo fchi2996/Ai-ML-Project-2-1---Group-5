@@ -4,7 +4,7 @@ import yaml
 import argparse
 
 #python HyperparameterRandomizer.py [model .yaml file] [output .yaml file]
-
+debug = False
 '''
 hyperparameter(parameter_name, parameter_type, values):
     parameter_name: Name found in the yaml file. This is everything before the colon. Case sensitive
@@ -17,7 +17,7 @@ hyperparameter(parameter_name, parameter_type, values):
 hyperparameters = [
         Hyperparameter.Hyperparameter("learning_rate", float, [0.00001, 0.001]),
         Hyperparameter.Hyperparameter("batch_size",    int,   [32, 512, 16]),
-        Hyperparameter.Hyperparameter("buffer_size",   int,   [4, 64, 4]),
+        Hyperparameter.Hyperparameter("buffer_size",   int,   [4, 64, 4]), #x * batch_size
         Hyperparameter.Hyperparameter("hidden_units",  int,   [32, 512, 16]),
         Hyperparameter.Hyperparameter("num_layers",    int,   [1, 3, 1]),
         Hyperparameter.Hyperparameter("gamma",         float, [0.9, 0.995]),
@@ -34,14 +34,13 @@ def recursive(data: dict, hyperparameters: list) -> int:
 
         for index in range(len(hyperparameters)):
             if hyperparameters[index].get_name() == key:
-                # buffer_size bodge:
+                #buffer_size bodge:
                 if hyperparameters[index].get_name() == "buffer_size":
                     for index2 in range(len(hyperparameters)):
                         if hyperparameters[index2].get_name() == "batch_size":
                             batch_size = hyperparameters[index2].get_random()
 
                     data.update({key: hyperparameters[index].get_random() * batch_size})
-                    print(hyperparameters[1].get_random())
 
                 else:
                     data.update({key: hyperparameters[index].get_random()})
@@ -52,18 +51,25 @@ def recursive(data: dict, hyperparameters: list) -> int:
 #end recursive method
 
 #main method
-# input_yaml_filename = "example.yaml"
-# output_yaml_filename = "exampleOutput.yaml"
+if debug:
+    print("!!! DEBUG MODE !!!")
 
-parser = argparse.ArgumentParser()
+print("Randomizing .yaml file")
 
-parser.add_argument("input", help="the example .yaml file")
-parser.add_argument("output", help="the output .yaml file. this file will be overwritten if it already exists")
+#only used for debug. Overwritten if debug = false
+input_yaml_filename = "example.yaml"
+output_yaml_filename = "debug_output.yaml"
 
-args = parser.parse_args()
+if not debug: #parse args
+    parser = argparse.ArgumentParser()
 
-input_yaml_filename = args.input
-output_yaml_filename = args.output
+    parser.add_argument("input", help="the example .yaml file")
+    parser.add_argument("output", help="the output .yaml file. this file will be overwritten if it already exists")
+
+    args = parser.parse_args()
+
+    input_yaml_filename = args.input
+    output_yaml_filename = args.output
 
 if not os.path.exists(input_yaml_filename):
     raise Exception("Cannot find input yaml file")
@@ -76,7 +82,43 @@ checksum = recursive(yaml_dict, hyperparameters)
 if len(hyperparameters) != checksum:
     raise Exception("Hyperparameter checksum failed. " + str(len(hyperparameters)) + " != " + str(checksum))
 
-with open(output_yaml_filename, "w") as yaml_output_file:
-    yaml.dump(yaml_dict, yaml_output_file, default_flow_style=False)
+yaml_header = "#"
+for index in range(len(hyperparameters)):
+    yaml_header += hyperparameters[index].get_name()
+    if index < len(hyperparameters)-1:
+        yaml_header += ","
+yaml_header += "\n#"
+for index in range(len(hyperparameters)):
+    if hyperparameters[index].get_name() == "buffer_size":
+        for index2 in range(len(hyperparameters)):
+            if hyperparameters[index2].get_name() == "batch_size":
+                batch_size = hyperparameters[index2].get_random()
 
-print(".yaml file successfully generated. Randomized " + str(len(hyperparameters)) + " parameters\nOutput to file \"" + output_yaml_filename + "\"")
+        yaml_header += str(batch_size * hyperparameters[index].get_random())
+
+    else:
+        yaml_header += str(hyperparameters[index].get_random())
+
+    if index < len(hyperparameters)-1:
+        yaml_header += ","
+
+with open(output_yaml_filename, "w") as yaml_output_file:
+    yaml_output_file.write(yaml_header + "\n")
+    yaml.dump(yaml_dict, yaml_output_file, default_flow_style=False)
+    yaml_output_file.flush()
+
+print("") #new line
+for index in range(len(hyperparameters)):
+    #this program is held together with scotch tape, hope, and zip ties
+    if hyperparameters[index].get_name() == "buffer_size":
+        for index2 in range(len(hyperparameters)):
+            if hyperparameters[index2].get_name() == "batch_size":
+                batch_size = hyperparameters[index2].get_random()
+        print("Set \"" + hyperparameters[index].get_name() + "\" to \"" + str(hyperparameters[index].get_random() * batch_size) + "\"")
+    else:
+        print("Set \"" + hyperparameters[index].get_name() + "\" to \"" + str(hyperparameters[index].get_random()) + "\"")
+
+print("\n.yaml file successfully generated. Randomized \"" + str(len(hyperparameters)) + "\" parameters\n\n Model file name: \"" + input_yaml_filename + "\"\nOutput file name: \"" + output_yaml_filename + "\"")
+
+if debug:
+    print("!!! DEBUG MODE !!!")
