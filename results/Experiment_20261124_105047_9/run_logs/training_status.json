@@ -1,0 +1,38 @@
+{
+    "3DBall": {
+        "checkpoints": [
+            {
+                "steps": 499476,
+                "file_path": "results/Experiment_20261124_105047_9/3DBall/3DBall-499476.onnx",
+                "reward": 94.22354375614839,
+                "creation_time": 1795526373.1411736,
+                "auxillary_file_paths": [
+                    "results/Experiment_20261124_105047_9/3DBall/3DBall-499476.pt"
+                ]
+            },
+            {
+                "steps": 500476,
+                "file_path": "results/Experiment_20261124_105047_9/3DBall/3DBall-500476.onnx",
+                "reward": 94.54445883962843,
+                "creation_time": 1795526373.1898959,
+                "auxillary_file_paths": [
+                    "results/Experiment_20261124_105047_9/3DBall/3DBall-500476.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 500476,
+            "file_path": "results/Experiment_20261124_105047_9/3DBall.onnx",
+            "reward": 94.54445883962843,
+            "creation_time": 1795526373.1898959,
+            "auxillary_file_paths": [
+                "results/Experiment_20261124_105047_9/3DBall/3DBall-500476.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.0.0",
+        "torch_version": "2.1.2+cpu"
+    }
+}
